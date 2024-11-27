@@ -15,20 +15,20 @@ public class UserRepository {
     public void addUser(User user) {
         users.add(user);
     }
-public Optional<User> getUserById(int id){
+
+    public Optional<User> findUserById(int id) {
         return users.stream()
                 .filter(user -> user.getId() == id)
                 .findFirst();
-}
+    }
 
-    public Optional<User> getUserByEmail(String email){
+    public Optional<User> findUserByEmail(String email) {
         return users.stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
     }
 
-    public List <User> getAllUsers(){
-        return new ArrayList<>(users);
+    public Optional<List<User>> findAllUsers() {
+        return users.isEmpty() ? Optional.empty() : Optional.of(new ArrayList<>(users));
     }
-
 }
